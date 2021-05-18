@@ -1,0 +1,26 @@
+{% extends "travello/base.html" %}
+{% load static %}
+{% static "images" as imgurl%}
+{% block content %}
+<div class='home_search_content' id="register">
+<form action="" method="POST">
+  {% csrf_token %}
+  <div class="container">
+    <h4>Register</h4>
+    {% for message in messages %}
+    {{ message }}<br>
+    {% endfor %}
+    <div class="row">
+      <div class= "col-lg-6">First Name :</div><div class= "col-lg-6"><input type="text" name="first_name" placeholder="First Name"></div>
+      <div class= "col-lg-6">Last Name :</div><div class= "col-lg-6"><input type="text" name="last_name" placeholder="Last name"></div>
+      <div class= "col-lg-6">Username : </div><div class= "col-lg-6"><input type="text" name='username' placeholder="Username"></div>
+      <div class= "col-lg-6">Email : </div><div class= "col-lg-6"><input type="text" name="email" placeholder="email"></div>
+      <div class= "col-lg-6">Enter a Password : </div><div class= "col-lg-6"><input type="password" name="password1" placeholder="Password"></div>
+      <div class= "col-lg-6">Confirm Password : </div><div class= "col-lg-6"><input type="password" name="password2" placeholder="Confirm Password"></div>
+      <div class= "col-lg-6"><input type="submit" value="Register"></div><br>
+    </div>
+  </div>
+</form>
+</div>
+
+{% endblock %}
