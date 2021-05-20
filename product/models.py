@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+import random
 
 # Create your models here.
 class Product(models.Model):
@@ -12,3 +13,4 @@ class Product(models.Model):
     STATUS_CHOICES = ((0, 'INACTIVE'), (1,'ACTIVE'))
     P_STATUS = models.IntegerField(choices=STATUS_CHOICES, default=1)
     P_DATE = models.DateTimeField(default = timezone.now) #added date
+    P_SLUG = models.SlugField(max_length=40, null=False, unique=True)
