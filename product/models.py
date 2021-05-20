@@ -10,5 +10,5 @@ class Product(models.Model):
     P_PRICE = models.FloatField(blank=False)
     P_STOCK = models.IntegerField(blank=False)
     STATUS_CHOICES = ((0, 'INACTIVE'), (1,'ACTIVE'))
-    P_STATUS = models.IntegerField(choices=STATUS_CHOICES)
+    P_STATUS = models.IntegerField(choices=STATUS_CHOICES, default=1)
     P_DATE = models.DateTimeField(default = timezone.now) #added date

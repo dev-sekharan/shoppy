@@ -28,9 +28,14 @@
 						</div>
 						<nav class="col-md-6 col-12 tm-nav">
 							<ul class="tm-nav-ul">
-								<li class="tm-nav-li"><a href="index.html" class="tm-nav-link active">Home</a></li>
-								<li class="tm-nav-li"><a href="about.html" class="tm-nav-link">About</a></li>
+								<li class="tm-nav-li"><a href="home" class="tm-nav-link active">Home</a></li>
 								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">Contact</a></li>
+								{% if user.is_authenticated %}
+								<li class="tm-nav-li">Hi, {{ user.first_name }} | <a href="accounts/logout" class="tm-nav-link">Logout</a></li>
+								{% else %}
+								<li class="tm-nav-li"><a href="accounts/register" class="tm-nav-link">Register</a></li>
+								<li class="tm-nav-li"><a href="accounts/login" class="tm-nav-link">Login</a></li>
+								{% endif %}
 							</ul>
 						</nav>
 					</div>

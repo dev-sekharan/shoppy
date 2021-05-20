@@ -1,21 +1,37 @@
-{% extends "travello/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% static "images" as imgurl%}
 {% block content %}
 <div class='home_search_content' id="register">
 <form action="" method="POST">
   {% csrf_token %}
-  <div class="container">
-    <h4>Login</h4>
-    {% for message in messages %}
-    {{ message }}<br>
-    {% endfor %}
-    <div class="row">
-      <div class= "col-lg-6">Username : </div><div class= "col-lg-6"><input type="text" name="username" placeholder="username"></div>
-      <div class= "col-lg-6">Password : </div><div class= "col-lg-6"><input type="password" name="password" placeholder="Password"></div>
-      <div class= "col-lg-6"><input type="submit" value="Login"></div><br>
+
+    <div class="tm-container-inner-2 tm-contact-section">
+      <h4 class="col-6 tm-section-title">Login</h4>
+      {% for message in messages %}
+      {{ message }}<br>
+      {% endfor %}
+
+      <div class="row">
+        <div class="col-md-6">
+          <form action="accounts/login" method="POST" class="tm-contact-form">
+                <div class="form-group">
+                  <input type="text" name="username" class="form-control" placeholder="Username" required="" />
+                </div>
+
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control" placeholder="Password" required="" />
+                </div>
+
+                <div class="form-group tm-d-flex">
+                  <button type="submit" class="tm-btn tm-btn-success tm-btn-left">
+                    Login
+                  </button>
+                </div>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-</form>
-</div>
-{% endblock %}
+
+
+  {% endblock %}
