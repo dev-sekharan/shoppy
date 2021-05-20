@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
-class Products(models.Model):
+class Product(models.Model):
     P_ID = models.AutoField(primary_key=True)
     P_NAME = models.CharField(blank=False, max_length=100)
     P_IMG = models.ImageField(upload_to="products/images")
