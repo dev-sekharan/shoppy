@@ -1,4 +1,4 @@
-"""accounts URL Configuration
+"""product URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from cart.views import CartView
 
-app_name = 'accounts'
+app_name = 'cart'
 urlpatterns = [
-    path('register', views.register, name = "register"),
-    path('login', views.login, name="login"),
-    path('logout', views.logout, name="logout"),
+    path('', CartView.as_view(), name="cart"),
+    path('<int:p_id>/', views.add, name='add')
 ]

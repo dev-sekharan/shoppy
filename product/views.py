@@ -1,15 +1,15 @@
-from django.shortcuts import render
-
-# Create your views here.
-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.views import generic
 from .models import Product
 
-# Create your views here.
-def index(request):
-    products = Product.objects.all()
-    return render(request,'product/index.html',{'products':products})
 
-def detail(request, P_SLUG):
-    product = Product.objects.filter(P_SLUG = P_SLUG)
-    return render(request,'product/detail.html',{'product':product})
+# Create your views here.
+class ProductView(generic.ListView):
+    template_name = 'product/index.html'
+    model = Product
+    context_object_name = 'products'
+
+
+def detail(request, p_slug):
+    product = get_object_or_404(Product, P_SLUG = p_slug)
+    return render(request, 'product/detail.html', {'product':product})

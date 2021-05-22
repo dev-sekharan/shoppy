@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from product.views import ProductView
 
+app_name = 'product'
 urlpatterns = [
-    path('', views.index, name='home'),
-    path('<slug:P_SLUG>/', views.detail, name = 'detail')
+    path('', ProductView.as_view(), name='home'),
+    path('<slug:p_slug>/', views.detail, name = 'detail'),
 ]

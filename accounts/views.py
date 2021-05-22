@@ -4,6 +4,7 @@ from django.contrib import messages
 
 # Create your views here.
 
+
 def register(request):
     if request.method == "POST":
         first_name = request.POST['first_name']
@@ -13,15 +14,15 @@ def register(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
         msg = 0
-        if(password1 != password2):
+        if password1 != password2:
             messages.info(request, "Password doesn't match")
-            msg+=1
-        if(User.objects.filter(username=username).exists()):
+            msg += 1
+        if User.objects.filter(username=username).exists():
             messages.info(request, "Username already taken!")
-            msg+=1
-        if(User.objects.filter(email=email).exists()):
+            msg += 1
+        if User.objects.filter(email=email).exists():
             messages.info(request, "Email already exists")
-            msg+=1
+            msg += 1
         if msg:
             return redirect('register')
         else:

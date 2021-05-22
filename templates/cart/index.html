@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- Gallery -->
+<div class="row tm-gallery">
+  <!-- gallery page 1 -->
+  <div id="tm-gallery-page-pizza" class="tm-gallery-page">
+    {% for product in products %}
+    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+      <figure>
+        <img src="{{ product.P_IMG.url }}" alt="Image" class="img-fluid tm-gallery-img" />
+        <figcaption>
+          <h4 class="tm-gallery-title">{{ product.P_NAME }}</h4>
+          <p class="tm-gallery-description">{{ product.P_DESC }}</p>
+          <p class="tm-gallery-price">Rs. {{ product.P_PRICE }}</p>
+          <p><a href="about.html" class="tm-btn tm-btn-default tm-right">BUY NOW</a></p>
+        </figcaption>
+      </figure>
+    </article>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
