@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 from product.views import ProductView
+from cart.views import CartView
 
 app_name = 'product'
 urlpatterns = [
     path('', ProductView.as_view(), name='home'),
-    path('<slug:p_slug>/', views.detail, name = 'detail'),
+    path('<slug:p_slug>/', views.detail, name='detail'),
 ]

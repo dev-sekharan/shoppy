@@ -82,9 +82,9 @@ DATABASES = {
     'default': {
                 'ENGINE': 'django.db.backends.postgresql',
                 'NAME': 'shoppy',
-                'USER' : 'postgres',
-                'PASSWORD' : 'postgres',
-                'HOST' : 'localhost',
+                'USER': 'postgres',
+                'PASSWORD': 'postgres',
+                'HOST': 'localhost',
     }
 }
 
@@ -127,9 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'shoppy/static')
+    os.path.join(BASE_DIR, 'shoppy/static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'shoppy/media')
-LOGIN_URL = os.path.join(BASE_DIR, 'accounts/login')
+LOGIN_URL = '/accounts/login'

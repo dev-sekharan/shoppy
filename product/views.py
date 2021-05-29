@@ -11,5 +11,8 @@ class ProductView(generic.ListView):
 
 
 def detail(request, p_slug):
-    product = get_object_or_404(Product, P_SLUG = p_slug)
-    return render(request, 'product/detail.html', {'product':product})
+    product = get_object_or_404(Product, P_SLUG=p_slug)
+    counter = range(1, product.P_STOCK)
+    return render(request, 'product/detail.html', {'product': product, 'counter': counter})
+
+
