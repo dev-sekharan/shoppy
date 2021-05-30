@@ -2,21 +2,37 @@
 {% load static %}
 {% block content %}
 <!-- Gallery -->
-<div class="row tm-gallery">
+<div class="row">
   <!-- gallery page 1 -->
-  <div id="tm-gallery-page-pizza" class="tm-gallery-page">
-    {% for product in products %}
-    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-      <figure>
-        <img src="{{ product.P_IMG.url }}" alt="Image" class="img-fluid tm-gallery-img" />
-        <figcaption>
-          <h4 class="tm-gallery-title">{{ product.P_NAME }}</h4>
-          <p class="tm-gallery-description">{{ product.P_DESC }}</p>
-          <p class="tm-gallery-price">Rs. {{ product.P_PRICE }}</p>
-          <p><a href="about.html" class="tm-btn tm-btn-default tm-right">BUY NOW</a></p>
-        </figcaption>
-      </figure>
-    </article>
+  <div id="cart" class="cart">
+    {% for c in cart %}
+    <div class ='row'>
+      <div class="col">
+        <img src="{{ c.C_PRODUCT.P_IMG.url }}" alt="Image" class="img-fluid p_img" />
+      </div>
+      <div class="col">
+          <h4 class="p_name">{{ c.C_PRODUCT.P_NAME }}</h4>
+          <p class="p_desc">{{ c.C_PRODUCT.P_DESC }}</p>
+          <form action = "/cart/process" method = "POST">
+          {% csrf_token %}
+              <input type="hidden" name="cid" value="{{ c.id }}"/>
+          <p class="p_qty">
+              Quantity:
+              <select class ='form-select' id = 'qty' name = 'qty'>
+                       {% for k in c.counter  %}
+                       <option value="{{ k }}" {% ifequal k c.C_QUANTITY %}selected{% endifequal %}>{{ k }}</option>
+                       {% endfor %}
+              </select>
+          </p>
+          <p class="p_price">Rs. {{ c.C_PRICE }}</p>
+          <p>
+            <input type="submit" value="BUY NOW" class="btn btn-primary" name="buy"/>
+            <input type="submit" value="UPDATE" class="btn btn-primary" name="update"/>
+            <input type="submit" value="DELETE" class="btn btn-primary" name="delete"/>
+          </p>
+          </form>
+      </div>
+    </div>
     {% endfor %}
     </div>
 </div>

@@ -6,8 +6,8 @@ from django.conf import settings
 
 
 class Cart(models.Model):
-    U_ID = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=None)
-    P_ID = models.ForeignKey(Product, on_delete=models.CASCADE, blank=None)
-    C_QTY = models.IntegerField(default=1, null=None)
+    C_USER = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=None)
+    C_PRODUCT = models.ForeignKey(Product, on_delete=models.CASCADE, blank=None)
+    C_QUANTITY = models.IntegerField(default=1, null=None)
     C_DATE = models.DateTimeField(auto_now=True)
 
