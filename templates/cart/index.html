@@ -4,6 +4,7 @@
 <!-- Gallery -->
 <div class="row">
   <!-- gallery page 1 -->
+  {% if cart %}
   <div id="cart" class="cart">
     {% for c in cart %}
     <div class ='row'>
@@ -26,7 +27,7 @@
           </p>
           <p class="p_price">Rs. {{ c.C_PRICE }}</p>
           <p>
-            <input type="submit" value="BUY NOW" class="btn btn-primary" name="buy"/>
+            <input type="submit" value="BUY" class="btn btn-primary" name="buy"/>
             <input type="submit" value="UPDATE" class="btn btn-primary" name="update"/>
             <input type="submit" value="DELETE" class="btn btn-primary" name="delete"/>
           </p>
@@ -35,5 +36,8 @@
     </div>
     {% endfor %}
     </div>
+    {% else %}
+    <div class="alert">There are no items in cart</div>
+    {% endif %}
 </div>
 {% endblock %}

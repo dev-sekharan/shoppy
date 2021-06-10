@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -6,6 +7,7 @@ from django.urls import reverse
 from django.db.models import F
 from cart.models import Cart
 from product.models import Product
+from buy.views import item
 
 
 # Create your views here.
@@ -37,10 +39,10 @@ def add(request):
             if cart is not None:
                 cart.C_QUANTITY = qty
                 cart.save()
-                print("CART UPDATED")
+                messages.info(request, "CART UPDATED")
             else:
                 Cart.objects.create(C_USER=user, C_PRODUCT=product, C_QUANTITY=qty)
-                print("NEW PRODUCT ADDED IN THE CART")
+                messages.info(request, "NEW PRODUCT ADDED IN THE CART")
             return redirect(reverse('cart:cart'))
         else:
             return HttpResponseRedirect(reverse('product'))
@@ -53,6 +55,10 @@ def process(request):
             return update(request)
         elif request.POST.get("delete"):
             return delete(request)
+        else:
+            return item(request)
+    else:
+        return redirect("cart:cart")
 
 
 @login_required
@@ -67,15 +73,15 @@ def update(request):
         cart.C_QUANTITY = qty
         cart.save()
     else:
-        print("NOT SAVED!")
+        messages.info(request, "NOT SAVED!")
     return redirect('cart:cart')
 
 
+@login_required
 def delete(request):
     cid = request.POST['cid']
     try:
         cart = Cart.objects.get(id=cid).delete()
     except ObjectDoesNotExist:
-        print("NO ENTRY!")
+        messages.info(request, "NO ENTRY!")
     return redirect('cart:cart')
-
