@@ -3,7 +3,13 @@
 {% block content %}
 <!-- Gallery -->
 <div class="row">
-  <!-- gallery page 1 -->
+{% if messages %}
+  <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+  </div>
+{% endif %}  
   {% if cart %}
   <div id="cart" class="cart">
     {% for c in cart %}
@@ -35,6 +41,7 @@
       </div>
     </div>
     {% endfor %}
+    <a href="{% url 'buy:cart' %}"><button class="btn btn-primary">CHECKOUT</button></a>
     </div>
     {% else %}
     <div class="alert">There are no items in cart</div>

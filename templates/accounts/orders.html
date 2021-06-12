@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- Gallery -->
+<div class="row">
+{% if messages %}
+  <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+  </div>
+{% endif %}
+  {% if orders %}
+  <div id="cart" class="cart">
+    {% for o in orders %}
+    <div class ='row'>
+      <div class="col">
+        <img src="{{ o.B_PRODUCT.P_IMG.url }}" alt="Image" class="img-fluid p_img" />
+      </div>
+      <div class="col">
+          <h4 class="p_name">{{ o.B_PRODUCT.P_NAME }}</h4>
+          <p class="p_desc">{{ o.B_PRODUCT.P_DESC }}</p>
+          <p class="p_qty"><b>QUANTITY : </b>{{ o.B_QUANTITY }}</p>
+          <p class="p_price"><b>PRICE : </b>Rs. {{ o.B_PRICE }}</p>
+          <p class="p_status"><b>STATUS : </b>{{ o.get_B_STATUS_display }}</p>
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert">There are no items in cart</div>
+    {% endif %}
+</div>
+{% endblock %}

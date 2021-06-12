@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth, User
 from django.contrib import messages
+from buy.models import Buy
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -50,3 +53,13 @@ def logout(request):
     auth.logout(request)
     print("User logged out")
     return redirect('/')
+
+
+@login_required
+def orders(request):
+    user = request.user
+    try:
+        orders = Buy.objects.filter(B_USER = user).order_by('-B_DATE')
+    except  ObjectDoesNotExist:
+        messages.info(request,"No orders found")
+    return render(request, 'accounts/orders.html', {'orders': orders})

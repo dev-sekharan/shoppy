@@ -18,5 +18,6 @@ from . import views
 
 app_name = 'buy'
 urlpatterns = [
-    path('', views.item, name="buy"),
+    path('item', views.item, name="item"),
+    path('cart', views.cart, name="cart")
 ]
